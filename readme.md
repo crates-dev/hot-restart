@@ -29,7 +29,8 @@ cargo add hot-restart
 ```rust
 use hot_restart::*;
 
-hot_restart("run --release");
+let res: ResultHotRestartError = hot_restart(&["--once", "-x", "check", "-x", "build --release"]);
+println!("hot_restart {:?}", res);
 ```
 
 ## License
