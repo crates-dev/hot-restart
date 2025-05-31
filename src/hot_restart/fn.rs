@@ -27,8 +27,6 @@ pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
         .stdin(Stdio::inherit());
     command
         .spawn()
-        .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?
-        .wait()
-        .map_err(|e| HotRestartError::CommandWaitFailed(e.to_string()))?;
+        .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?;
     exit(0);
 }
