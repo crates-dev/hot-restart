@@ -1,3 +1,5 @@
+use std::process::exit;
+
 use crate::*;
 
 pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
@@ -30,5 +32,5 @@ pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
         .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?
         .wait()
         .map_err(|e| HotRestartError::CommandWaitFailed(e.to_string()))?;
-    Ok(())
+    exit(0);
 }
