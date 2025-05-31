@@ -13,9 +13,6 @@ impl fmt::Display for HotRestartError {
             HotRestartError::CommandWaitFailed(e) => {
                 write!(f, "Failed to wait for cargo watch command: {}", e)
             }
-            HotRestartError::CommandFailed(code) => {
-                write!(f, "cargo watch command failed with status: {:?}", code)
-            }
             HotRestartError::Other(e) => write!(f, "An unexpected error occurred: {}", e),
         }
     }

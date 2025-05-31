@@ -21,20 +21,15 @@ pub fn hot_restart(command_args: &str) -> Result<(), HotRestartError> {
     }
     let mut command: Command = Command::new("cargo-watch");
     let args: Vec<&str> = command_args.split_whitespace().collect();
-    command.args(&args);
     command
+        .args(&args)
         .stdout(Stdio::inherit())
         .stderr(Stdio::inherit())
         .stdin(Stdio::inherit());
-    let mut child: Child = command
+    command
         .spawn()
-        .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?;
-    let status: ExitStatus = child
+        .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?
         .wait()
         .map_err(|e| HotRestartError::CommandWaitFailed(e.to_string()))?;
-    if status.success() {
-        Ok(())
-    } else {
-        Err(HotRestartError::CommandFailed(status.code()))
-    }
+    Ok(())
 }

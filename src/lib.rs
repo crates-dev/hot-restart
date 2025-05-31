@@ -8,5 +8,5 @@ pub(crate) use std::{
     borrow::Cow,
     fmt,
     io::Error,
-    process::{Child, Command, ExitStatus, Output, Stdio},
+    process::{Command, ExitStatus, Output, Stdio},
 };
