@@ -1,6 +1,6 @@
 use crate::*;
 
-pub fn cargo_watch(command_args: &str) -> Result<(), HotRestartError> {
+pub fn hot_restart(command_args: &str) -> Result<(), HotRestartError> {
     let check_output: Output = Command::new("cargo")
         .args(&["install", "--list"])
         .output()
@@ -12,7 +12,7 @@ pub fn cargo_watch(command_args: &str) -> Result<(), HotRestartError> {
             .args(&["install", "cargo-watch"])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-            .spawn()? // Use ? for std::io::Error, which will be converted by From trait
+            .spawn()?
             .wait()?;
         if !install_status.success() {
             return Err(HotRestartError::CargoWatchNotInstalled);
