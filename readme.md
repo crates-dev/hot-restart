@@ -29,7 +29,7 @@ cargo add hot-restart
 ```rust
 use hot_restart::*;
 
-
+hot_restart("run --release");
 ```
 
 ## License
