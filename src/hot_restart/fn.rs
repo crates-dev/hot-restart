@@ -1,5 +1,3 @@
-use std::process::exit;
-
 use crate::*;
 
 pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
