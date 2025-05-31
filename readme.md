@@ -14,7 +14,7 @@
 
 [Api Docs](https://docs.rs/hot-restart/latest/hot_restart/)
 
-> This is a hot reboot lib project.
+> A hot reboot lib project.
 
 ## Installation
 
