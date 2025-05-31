@@ -1,6 +1,6 @@
 use crate::*;
 
-pub fn run_cargo_watch_command(command_args: &str) -> Result<(), HotRestartError> {
+pub fn cargo_watch(command_args: &str) -> Result<(), HotRestartError> {
     let check_output: Output = Command::new("cargo")
         .args(&["install", "--list"])
         .output()
@@ -19,8 +19,7 @@ pub fn run_cargo_watch_command(command_args: &str) -> Result<(), HotRestartError
         }
         eprintln!("Cargo-watch installed successfully.");
     }
-    let mut command: Command = Command::new("cargo");
-    command.arg("watch");
+    let mut command: Command = Command::new("cargo-watch");
     let args: Vec<&str> = command_args.split_whitespace().collect();
     command.args(&args);
     command
