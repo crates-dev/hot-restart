@@ -1,6 +1,6 @@
 use crate::*;
 
-pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
+fn run_hot_restart(run_args: &[&str], wait: bool) -> ResultHotRestartError {
     let check_output: Output = Command::new("cargo")
         .args(&["install", "--list"])
         .output()
@@ -25,8 +25,21 @@ pub fn hot_restart(run_args: &[&str]) -> Result<(), HotRestartError> {
         .stdout(Stdio::inherit())
         .stderr(Stdio::inherit())
         .stdin(Stdio::inherit());
-    command
+    let mut child: Child = command
         .spawn()
         .map_err(|e| HotRestartError::CommandSpawnFailed(e.to_string()))?;
+    if wait {
+        child
+            .wait()
+            .map_err(|e| HotRestartError::CommandWaitFailed(e.to_string()))?;
+    }
     exit(0);
+}
+
+pub fn hot_restart(run_args: &[&str]) -> ResultHotRestartError {
+    run_hot_restart(run_args, false)
+}
+
+pub fn hot_restart_wait(run_args: &[&str]) -> ResultHotRestartError {
+    run_hot_restart(run_args, true)
 }
