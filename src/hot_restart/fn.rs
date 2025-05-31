@@ -7,7 +7,17 @@ pub fn run_cargo_watch_command(command_args: &str) -> Result<(), HotRestartError
         .map_err(|e| HotRestartError::Other(e.to_string()))?;
     let check_output_str: Cow<'_, str> = String::from_utf8_lossy(&check_output.stdout);
     if !check_output_str.contains("cargo-watch") {
-        return Err(HotRestartError::CargoWatchNotInstalled);
+        eprintln!("Cargo-watch is not installed. Attempting to install...");
+        let install_status: ExitStatus = Command::new("cargo")
+            .args(&["install", "cargo-watch"])
+            .stdout(Stdio::inherit())
+            .stderr(Stdio::inherit())
+            .spawn()? // Use ? for std::io::Error, which will be converted by From trait
+            .wait()?;
+        if !install_status.success() {
+            return Err(HotRestartError::CargoWatchNotInstalled);
+        }
+        eprintln!("Cargo-watch installed successfully.");
     }
     let mut command: Command = Command::new("cargo");
     command.arg("watch");
