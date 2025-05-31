@@ -1,0 +1,34 @@
+[package]
+name = "hot-restart"
+version = "0.1.0"
+edition = "2024"
+authors = ["root@ltpp.vip"] 
+license = "MIT"
+description = """This is a hot reboot lib project"""
+keywords = ["hot", "restart", "cargo", "watch", "file"]
+repository = "https://github.com/eastspire/hot-restart.git"
+categories = ["network-programming", "web-programming"]
+exclude = [
+    "target",
+    "Cargo.lock",
+    "sh",
+    ".github"
+]
+
+[profile.dev]
+incremental = false
+opt-level = 3
+lto = true
+panic = "unwind"
+debug = false
+codegen-units = 1
+strip = "debuginfo"
+
+[profile.release]
+incremental = false
+opt-level = 3
+lto = true
+panic = "unwind"
+debug = false
+codegen-units = 1
+strip = "debuginfo"
