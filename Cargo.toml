@@ -1,8 +1,8 @@
 [package]
 name = "hot-restart"
-version = "0.2.6"
+version = "0.2.7"
 edition = "2024"
-authors = ["root@ltpp.vip"] 
+authors = ["root@ltpp.vip"]
 license = "MIT"
 description = """A hot reboot lib project."""
 keywords = ["hot", "restart", "cargo", "watch", "file"]
@@ -16,7 +16,7 @@ exclude = [
 ]
 
 [dev-dependencies]
-tokio = { version = "1.45.1", features = ["full"] }
+tokio = { version = "1.46.1", features = ["full"] }
 
 [profile.dev]
 incremental = false
