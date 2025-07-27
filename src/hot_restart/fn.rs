@@ -1,5 +1,15 @@
 use crate::*;
 
+/// Internal function to handle hot restart process.
+///
+/// # Arguments
+///
+/// - `&[&str]` - Arguments to pass to cargo-watch.
+/// - `bool` - Whether to wait for process completion.
+///
+/// # Returns
+///
+/// - `ResultHotRestartError` - Result of hot restart operation.
 fn run_hot_restart(run_args: &[&str], wait: bool) -> ResultHotRestartError {
     let check_output: Output = Command::new("cargo")
         .args(&["install", "--list"])
@@ -36,10 +46,28 @@ fn run_hot_restart(run_args: &[&str], wait: bool) -> ResultHotRestartError {
     exit(0);
 }
 
+/// Starts hot restart process without waiting for completion.
+///
+/// # Arguments
+///
+/// - `&[&str]` - Arguments to pass to cargo-watch.
+///
+/// # Returns
+///
+/// - `ResultHotRestartError` - Result of hot restart operation.
 pub fn hot_restart(run_args: &[&str]) -> ResultHotRestartError {
     run_hot_restart(run_args, false)
 }
 
+/// Starts hot restart process and waits for completion.
+///
+/// # Arguments
+///
+/// - `&[&str]` - Arguments to pass to cargo-watch.
+///
+/// # Returns
+///
+/// - `ResultHotRestartError` - Result of hot restart operation.
 pub fn hot_restart_wait(run_args: &[&str]) -> ResultHotRestartError {
     run_hot_restart(run_args, true)
 }
