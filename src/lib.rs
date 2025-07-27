@@ -1,6 +1,8 @@
 //! hot-restart
 //!
-//! A hot reboot lib project.
+//! A Rust library for hot restarting applications without downtime.
+//! Provides seamless process replacement for servers and long-running services,
+//! enabling zero-downtime updates and configuration reloads.
 
 pub(crate) mod error;
 pub(crate) mod hot_restart;
