@@ -1,3 +1,7 @@
+//! hot-restart
+//!
+//! A hot reboot lib project.
+
 pub(crate) mod error;
 pub(crate) mod hot_restart;
 
