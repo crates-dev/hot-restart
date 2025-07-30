@@ -6,7 +6,7 @@ impl fmt::Display for HotRestartError {
     ///
     /// # Arguments
     ///
-    /// - `&self` - The HotRestartError instance.
+    /// - `&Self` - The HotRestartError instance.
     /// - `&mut fmt::Formatter` - The formatter to write to.
     ///
     /// # Returns
@@ -39,7 +39,7 @@ impl From<Error> for HotRestartError {
     ///
     /// # Returns
     ///
-    /// - `HotRestartError` - The converted error.
+    /// - `Self` - The converted error.
     fn from(err: Error) -> Self {
         HotRestartError::Other(err.to_string())
     }
