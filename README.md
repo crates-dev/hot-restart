@@ -5,7 +5,7 @@
 [![](https://img.shields.io/crates/v/hot-restart.svg)](https://crates.io/crates/hot-restart)
 [![](https://img.shields.io/crates/d/hot-restart.svg)](https://img.shields.io/crates/d/hot-restart.svg)
 [![](https://docs.rs/hot-restart/badge.svg)](https://docs.rs/hot-restart)
-[![](https://github.com/eastspire/hot-restart/workflows/Rust/badge.svg)](https://github.com/eastspire/hot-restart/actions?query=workflow:Rust)
+[![](https://github.com/crates-dev/hot-restart/workflows/Rust/badge.svg)](https://github.com/crates-dev/hot-restart/actions?query=workflow:Rust)
 [![](https://img.shields.io/crates/l/hot-restart.svg)](./LICENSE)
 
 </center>

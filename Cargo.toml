@@ -1,13 +1,13 @@
 [package]
 name = "hot-restart"
-version = "0.5.2"
+version = "0.5.3"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
 license = "MIT"
 description = """A Rust library for hot restarting applications without downtime. Provides seamless process replacement for servers and long-running services, enabling zero-downtime updates and configuration reloads."""
 keywords = ["hot", "restart", "cargo", "watch", "file"]
-repository = "https://github.com/eastspire/hot-restart.git"
+repository = "https://github.com/crates-dev/hot-restart.git"
 categories = ["network-programming", "web-programming"]
 exclude = [
     "target",
