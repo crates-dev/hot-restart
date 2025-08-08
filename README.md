@@ -29,8 +29,17 @@ cargo add hot-restart
 ```rust
 use hot_restart::*;
 
-let res: ResultHotRestartError = hot_restart(&["--once", "-x", "check", "-x", "build --release"]);
-println!("hot_restart {:?}", res);
+async fn before_restart_hook() {}
+
+#[tokio::main]
+async fn main() {
+    let res = hot_restart(
+        &["--once", "-x", "check", "-x", "build", "--release"],
+        before_restart_hook(),
+    )
+    .await;
+    println!("hot_restart result: {:?}", res);
+}
 ```
 
 ## License

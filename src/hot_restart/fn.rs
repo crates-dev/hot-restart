@@ -6,11 +6,16 @@ use crate::*;
 ///
 /// - `&[&str]` - Arguments to pass to cargo-watch.
 /// - `bool` - Whether to wait for process completion.
+/// - `F` - The future to run before hot restart.
 ///
 /// # Returns
 ///
 /// - `ResultHotRestartError` - Result of hot restart operation.
-fn run_hot_restart(run_args: &[&str], wait: bool) -> ResultHotRestartError {
+async fn run_hot_restart<F>(run_args: &[&str], wait: bool, before_hook: F) -> ResultHotRestartError
+where
+    F: Future<Output = ()>,
+{
+    before_hook.await;
     let check_output: Output = Command::new("cargo")
         .args(&["install", "--list"])
         .output()
@@ -51,12 +56,16 @@ fn run_hot_restart(run_args: &[&str], wait: bool) -> ResultHotRestartError {
 /// # Arguments
 ///
 /// - `&[&str]` - Arguments to pass to cargo-watch.
+/// - `F` - The future to run before hot restart.
 ///
 /// # Returns
 ///
 /// - `ResultHotRestartError` - Result of hot restart operation.
-pub fn hot_restart(run_args: &[&str]) -> ResultHotRestartError {
-    run_hot_restart(run_args, false)
+pub async fn hot_restart<F>(run_args: &[&str], before_hook: F) -> ResultHotRestartError
+where
+    F: Future<Output = ()>,
+{
+    run_hot_restart(run_args, false, before_hook).await
 }
 
 /// Starts hot restart process and waits for completion.
@@ -64,10 +73,14 @@ pub fn hot_restart(run_args: &[&str]) -> ResultHotRestartError {
 /// # Arguments
 ///
 /// - `&[&str]` - Arguments to pass to cargo-watch.
+/// - `F` - The future to run before hot restart.
 ///
 /// # Returns
 ///
 /// - `ResultHotRestartError` - Result of hot restart operation.
-pub fn hot_restart_wait(run_args: &[&str]) -> ResultHotRestartError {
-    run_hot_restart(run_args, true)
+pub async fn hot_restart_wait<F>(run_args: &[&str], before_hook: F) -> ResultHotRestartError
+where
+    F: Future<Output = ()>,
+{
+    run_hot_restart(run_args, true, before_hook).await
 }

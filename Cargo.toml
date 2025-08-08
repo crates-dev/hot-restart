@@ -1,6 +1,6 @@
 [package]
 name = "hot-restart"
-version = "0.5.4"
+version = "0.6.0"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]

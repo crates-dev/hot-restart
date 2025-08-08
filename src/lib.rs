@@ -13,6 +13,7 @@ pub use hot_restart::{r#fn::*, r#type::*};
 pub(crate) use std::{
     borrow::Cow,
     fmt,
+    future::Future,
     io::Error,
     process::{Child, Command, ExitStatus, Output, Stdio, exit},
 };
