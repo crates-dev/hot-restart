@@ -1,6 +1,6 @@
 [package]
 name = "hot-restart"
-version = "0.6.0"
+version = "0.6.1"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
@@ -17,7 +17,7 @@ exclude = [
 ]
 
 [dev-dependencies]
-tokio = { version = "1.47.1", features = ["full"] }
+tokio = { version = "1.48.0", features = ["full"] }
 
 [profile.dev]
 incremental = false
