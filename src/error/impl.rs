@@ -19,12 +19,12 @@ impl fmt::Display for HotRestartError {
                 "Cargo-watch is not installed. Please install it using: cargo install cargo-watch"
             ),
             HotRestartError::CommandSpawnFailed(e) => {
-                write!(f, "Failed to spawn cargo watch command: {}", e)
+                write!(f, "Failed to spawn cargo watch command: {e}")
             }
             HotRestartError::CommandWaitFailed(e) => {
-                write!(f, "Failed to wait for cargo watch command: {}", e)
+                write!(f, "Failed to wait for cargo watch command: {e}")
             }
-            HotRestartError::Other(e) => write!(f, "An unexpected error occurred: {}", e),
+            HotRestartError::Other(e) => write!(f, "An unexpected error occurred: {e}"),
         }
     }
 }
