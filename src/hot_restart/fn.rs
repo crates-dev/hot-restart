@@ -17,14 +17,14 @@ where
 {
     before_hook.await;
     let check_output: Output = Command::new("cargo")
-        .args(&["install", "--list"])
+        .args(["install", "--list"])
         .output()
         .map_err(|e| HotRestartError::Other(e.to_string()))?;
     let check_output_str: Cow<'_, str> = String::from_utf8_lossy(&check_output.stdout);
     if !check_output_str.contains("cargo-watch") {
         eprintln!("Cargo-watch is not installed. Attempting to install...");
         let install_status: ExitStatus = Command::new("cargo")
-            .args(&["install", "cargo-watch"])
+            .args(["install", "cargo-watch"])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
             .spawn()?
