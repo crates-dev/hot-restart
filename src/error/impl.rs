@@ -12,6 +12,7 @@ impl fmt::Display for HotRestartError {
     /// # Returns
     ///
     /// - `fmt::Result` - Result of formatting operation.
+    #[inline(always)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             HotRestartError::CargoWatchNotInstalled => write!(
@@ -40,6 +41,7 @@ impl From<Error> for HotRestartError {
     /// # Returns
     ///
     /// - `Self` - The converted error.
+    #[inline(always)]
     fn from(err: Error) -> Self {
         HotRestartError::Other(err.to_string())
     }
