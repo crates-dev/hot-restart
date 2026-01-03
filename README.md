@@ -24,24 +24,6 @@ To use this crate, you can run cmd:
 cargo add hot-restart
 ```
 
-## Use
-
-```rust
-use hot_restart::*;
-
-async fn before_restart_hook() {}
-
-#[tokio::main]
-async fn main() {
-    let res = hot_restart(
-        &["--once", "-x", "check", "-x", "build", "--release"],
-        before_restart_hook(),
-    )
-    .await;
-    println!("hot_restart result: {:?}", res);
-}
-```
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
