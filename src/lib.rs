@@ -4,12 +4,12 @@
 //! Provides seamless process replacement for servers and long-running services,
 //! enabling zero-downtime updates and configuration reloads.
 
-pub(crate) mod error;
-pub(crate) mod hot_restart;
+mod error;
+mod hot_restart;
 
 pub use {error::*, hot_restart::*};
 
-pub(crate) use std::{
+use std::{
     borrow::Cow,
     fmt,
     future::Future,
